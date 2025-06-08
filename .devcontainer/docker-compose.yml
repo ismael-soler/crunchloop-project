@@ -24,6 +24,7 @@ services:
     depends_on:
       - sqlserver
     environment:
+      - DB_HOST=sqlserver
       - ConnectionStrings__TodoContext=Server=sqlserver;Database=Todos;User Id=sa;Password=Password123;TrustServerCertificate=True
     expose:
       - "8080"

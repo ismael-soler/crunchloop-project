@@ -50,6 +50,8 @@ WORKDIR /app/src/TodoApi
 RUN dotnet tool restore
 RUN dotnet restore
 
+RUN apt-get update && apt-get install -y netcat-openbsd
+
 ENV ASPNETCORE_URLS=http://+:8080
 
 RUN chmod +x ./entrypoint.sh
