@@ -1,0 +1,29 @@
+name: crunchloop
+
+services:
+  dev:
+    container_name: crunchloop-dev
+    image: mcr.microsoft.com/devcontainers/dotnet:8.0
+    command: sleep infinity
+    depends_on:
+      - sqlserver
+    volumes:
+      - ..:/app
+
+  sqlserver:
+    container_name: crunchloop-sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password123
+
+  api:
+    build:
+      context: ../
+      dockerfile: src/TodoApi/Dockerfile
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__TodoContext=Server=sqlserver;Database=Todos;User Id=sa;Password=Password123;TrustServerCertificate=True
+    expose:
+      - "8080"

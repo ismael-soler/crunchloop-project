@@ -1,0 +1,20 @@
+{
+    "folder-color.pathColors": [
+        {
+            "folderPath": "app/TodoApi/",
+            "color": "foldercolorizer.color_006699"
+        },
+        {
+            "folderPath": "app/src/TodoApi/",
+            "color": "foldercolorizer.color_006699"
+        },
+        {
+            "folderPath": "crunchloop-project/src/TodoApi/",
+            "color": "foldercolorizer.color_006699"
+        },
+        {
+            "folderPath": "app/src/placeholder/",
+            "color": "foldercolorizer.color_cc3333"
+        }
+    ]
+}
