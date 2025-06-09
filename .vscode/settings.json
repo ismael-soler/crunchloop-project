@@ -23,6 +23,18 @@
         {
             "folderPath": "crunchloop-project/src/McpServer/",
             "color": "foldercolorizer.color_cc3333"
+        },
+        {
+            "folderPath": "app/src/McpServer/Tools/",
+            "color": "foldercolorizer.color_cc33cc"
+        },
+        {
+            "folderPath": "app/src/McpServer/Extension/",
+            "color": "foldercolorizer.color_cc66ff"
+        },
+        {
+            "folderPath": "todo-list-mcp-server/src/McpServer/",
+            "color": "foldercolorizer.color_cc3333"
         }
     ]
 }

@@ -7,7 +7,7 @@ COPY src/McpServer/McpServer.csproj ./src/McpServer/
 RUN dotnet restore src/McpServer/McpServer.csproj
 
 # Copy the rest of the source code and publish the McpServer project
-COPY . .
+COPY . . 
 WORKDIR /src/src/McpServer
 RUN dotnet publish -c Release -o /app/publish
 
