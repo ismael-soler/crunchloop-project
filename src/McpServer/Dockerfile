@@ -3,10 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src 
 
 # Copy all project and solution files needed to restore dependencies.
-COPY *.sln .
 COPY src/McpServer/McpServer.csproj ./src/McpServer/
-COPY src/TodoApi/TodoApi.csproj ./src/TodoApi/
-RUN dotnet restore crunchloop-project.sln
+RUN dotnet restore src/McpServer/McpServer.csproj
 
 # Copy the rest of the source code and publish the McpServer project
 COPY . .
