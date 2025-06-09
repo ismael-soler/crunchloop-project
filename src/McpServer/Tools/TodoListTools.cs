@@ -8,9 +8,9 @@ namespace McpServer.tools;
 [McpServerToolType]
 public static class TodoListMcpTools
 {
-    [McpServerTool, Description("get Todo LISTS from the DB")]
+    [McpServerTool, Description("get Todo LISTS from the Database")]
+    // Uses the http client we built on Program.cs
     public static async Task<string> GetTodoLists(HttpClient client)
-    // This is the http client we built on Program.cs
     {
         // call the api
         using var JsonDocument = await client.ReadJsonDocumentAsync("/api/todolists");
@@ -23,5 +23,37 @@ public static class TodoListMcpTools
         }
 
         return root.GetRawText();
+    }
+
+    [McpServerTool, Description("create a Todo List in the Database")]
+    public static async Task<string> PostTodoList(
+        HttpClient client,
+        [Description("The name of the new to-do list to create")] string name)
+    {
+        // Create an objet representing the JSON payload
+        var payload = new { Name = name };
+
+        // serialize the object
+        var jsonPayload = JsonSerializer.Serialize(payload);
+
+        // Create the object that the HttpClient uses to represent the body of the request.
+        var content = new StringContent(
+            jsonPayload,
+            System.Text.Encoding.UTF8,
+            "application/json"
+        );
+
+        // send the POST request
+        var response = await client.PostAsync("/api/todolists", content);
+
+        // check the response and return a message
+        if (response.IsSuccessStatusCode)
+        {
+            return $"Successfully created the to-do list named '{name}'.";
+        }
+        else
+        {
+            return $"Error creating list. The API responded with: {response.StatusCode}";
+        }
     }
 }
