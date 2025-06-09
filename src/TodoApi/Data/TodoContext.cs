@@ -13,5 +13,5 @@ public class TodoContext : DbContext
     // "I want a table in my database that will store TodoLists"
     public DbSet<TodoList> TodoList { get; set; } = default!;
     // "I want a table in my database that will store TodoItems"
-    public DbSet<TodoItem> TodoItems { get; set; } = default!;
+    public DbSet<TodoItem> TodoItem { get; set; } = default!;
 }
