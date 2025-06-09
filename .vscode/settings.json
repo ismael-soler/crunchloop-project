@@ -15,6 +15,14 @@
         {
             "folderPath": "app/src/placeholder/",
             "color": "foldercolorizer.color_cc3333"
+        },
+        {
+            "folderPath": "app/src/McpServer/",
+            "color": "foldercolorizer.color_cc3333"
+        },
+        {
+            "folderPath": "crunchloop-project/src/McpServer/",
+            "color": "foldercolorizer.color_cc3333"
         }
     ]
 }

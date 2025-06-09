@@ -40,22 +40,73 @@
 
 # -------------------------------------------------------------------------------------
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+# FROM mcr.microsoft.com/dotnet/sdk:8.0
+# WORKDIR /app
+
+# COPY . .
+
+# WORKDIR /app/src/TodoApi
+
+# RUN dotnet tool restore
+# RUN dotnet restore ../../crunchloop-project.sln
+
+# RUN apt-get update && apt-get install -y netcat-openbsd
+
+# ENV ASPNETCORE_URLS=http://+:8080
+
+# RUN chmod +x ./entrypoint.sh
+
+# ENTRYPOINT ["./entrypoint.sh"]
+
+# CMD ["dotnet", "run", "--no-launch-profile"]
+
+# ---------------------------------------------------------------------------------------
+
+FROM mcr.microsoft.com/devcontainers/dotnet:8.0
 WORKDIR /app
-
-COPY . .
-
+    
+COPY src/TodoApi/*.csproj ./src/TodoApi/
 WORKDIR /app/src/TodoApi
+RUN dotnet restore --verbosity detailed
 
-RUN dotnet tool restore
-RUN dotnet restore
+WORKDIR /app
+COPY src/TodoApi/ src/TodoApi/
+
 
 RUN apt-get update && apt-get install -y netcat-openbsd
-
 ENV ASPNETCORE_URLS=http://+:8080
 
+WORKDIR /app/src/TodoApi
+RUN dotnet tool restore
 RUN chmod +x ./entrypoint.sh
-
+    
 ENTRYPOINT ["./entrypoint.sh"]
-
+    
 CMD ["dotnet", "run", "--no-launch-profile"]
+
+# ---------------------------------------------------------------------------------------
+    
+
+# # s1
+# FROM mcr.microsoft.com/devcontainers/dotnet:8.0
+# WORKDIR /app
+
+# COPY src/TodoApi/*.csproj ./src/TodoApi/
+# WORKDIR /app/src/TodoApi
+# RUN dotnet restore --verbosity detailed
+
+# # s2
+
+# COPY src/TodoApi/ src/TodoApi
+
+# RUN dotnet tool restore
+
+# RUN apt-get update && apt-get install -y netcat-openbsd
+
+# ENV ASPNETCORE_URLS=http://+:8080
+
+# RUN chmod +x ./entrypoint.sh
+
+# ENTRYPOINT ["./entrypoint.sh"]
+
+# CMD ["dotnet", "run", "--no-launch-profile"]

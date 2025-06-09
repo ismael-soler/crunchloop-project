@@ -1,0 +1,63 @@
+# .gitignore for .NET Projects
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+
+# Build results
+**/[Bb]in/
+**/[Oo]bj/
+
+# IDE and Editor Folders
+# Visual Studio
+.vs/
+
+# VS Code - It's often useful to commit .vscode/launch.json and .vscode/settings.json
+# to share debug and workspace settings with a team, but ignore the rest.
+# This pattern ignores the folder but allows specific files.
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Rider / JetBrains
+.idea/
+
+# Dotnet local tool cache
+.dotnet/
+
+# OS-generated files
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Log and temp files
+*.log
+*.tmp
+*.temp
+
+# Local Secrets
+# If you use 'user-secrets', they are stored outside the project directory.
+# If you have a local secrets file, it should be ignored.
+secrets.json
+
+# Local Development App Settings
+# It's common practice to commit appsettings.json (with production-safe defaults)
+# but ignore the development-specific one which may contain sensitive local data.
+appsettings.Development.json
+
+# NuGet Packages
+# In modern .NET, packages are stored in a global folder, but this is good for legacy projects.
+**/packages/
+*.nupkg
+
+# Test Results
+*.trx
+*.test-results
