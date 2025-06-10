@@ -2,6 +2,8 @@
 
 This project provides a complete environment for a to-do list application. It features a .NET REST API for managing tasks and lists, which is then exposed to a large language model client via a Model Context Protocol (MCP) server. The entire application is containerized with Docker for easy setup and deployment.
 
+---
+
 ### Tech Stack
 
 -   **Backend API:** C#, ASP.NET Core
@@ -113,4 +115,11 @@ The MCP server exposes the following tools, which are defined from the `TodoItem
 - `DeleteTodoItem`: Deletes a specific task
 - `UpdateItemDescription`: Updates the description of a specific task.
 
+---
 
+
+### Video Demo
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/Um32bAb4Ml4/0.jpg)](http://www.youtube.com/watch?v=Um32bAb4Ml4)
+
+---
