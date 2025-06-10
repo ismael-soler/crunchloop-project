@@ -75,17 +75,21 @@ docker-compose down
 To connect to the MCP server through Claude Desktop client, follow these steps:
 1. Open Claude Desktop Settings and navigate to the **Developer** tab.
 2. CLick on "Edit Config", this will open a folder that contains the `claude_desktop_config.json` file. Open it with any text editor.
-3. ADd the following configuration to the `mcpServers` object. If the object is empty you can just paste the code inside.
+3. Paste the following content so the file looks like this:
 ```JSON
-"todo_mcp_docker": {
-    "command": "docker",
-    "args": [
-        "exec",
-        "-i",
-        "crunchloop-mcpserver-1",
-        "dotnet",
-        "McpServer.dll"
-    ]
+{
+    "mcpServers": {
+        "todo_mcp_docker": {
+        "command": "docker",
+        "args": [
+            "exec",
+            "-i",
+            "crunchloop-mcpserver-1",
+            "dotnet",
+            "McpServer.dll"
+            ]
+        }
+    }
 }
 ```
 4. Save the file. Claude Desktop will now have access to the to-do list tools.
