@@ -18,6 +18,15 @@ namespace TodoApi.Controllers
             _context = context;
         }
 
+
+        // GET: api/items/
+        [HttpGet("items")]
+        public async Task<ActionResult<TodoItem>> GetTodoItems()
+        {
+            return Ok(await _context.TodoItem.ToListAsync());
+        }
+
+
         // GET: api/items/5
         [HttpGet("items/{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
@@ -32,13 +41,25 @@ namespace TodoApi.Controllers
             return Ok(todoItem);
         }
 
-        // GET: api/items/
-        [HttpGet("items")]
-        public async Task<ActionResult<TodoItem>> GetTodoItems()
-        {
-            return Ok(await _context.TodoItem.ToListAsync());
-        }
 
+        // GET: api/todolists/1/items
+        [HttpGet("todolists/{listId}/items")]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetItemsForList(long listId)
+        {
+            // Check if the parent list exists.
+            var todoList = await _context.TodoList.FindAsync(listId);
+            if (todoList == null)
+            {
+                return NotFound($"No TodoList found with id {listId}");
+            }
+
+            // If the list exists, find all items that have a matching TodoListId.
+            var todoItems = await _context.TodoItem
+                .Where(item => item.TodoListId == listId)
+                .ToListAsync();
+
+            return Ok(todoItems);
+        }
 
         // POST: api/todolists/{listId}/items
         [HttpPost("todolists/{listId}/items")]
@@ -66,6 +87,65 @@ namespace TodoApi.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+        }
+
+
+        // ----------------------
+
+        // PATCH: api/items/5/complete
+        [HttpPatch("items/{id}/complete")]
+        public async Task<IActionResult> CompleteTodoItem(long id)
+        {
+            // load item
+            var todoItem = await _context.TodoItem.FindAsync(id);
+
+            // if 404
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+
+            todoItem.IsComplete = true;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        // DELETE: api/items/5
+        [HttpDelete("items/{id}")]
+        public async Task<IActionResult> DeleteTodoItem(long id)
+        {
+            // Find the item
+            var todoItem = await _context.TodoItem.FindAsync(id);
+
+            // If not found
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+
+            // If found, remove it and save
+            _context.TodoItem.Remove(todoItem);
+            await _context.SaveChangesAsync();
+
+            // Return success
+            return NoContent();
+        }
+
+        // PATCH: api/items/5/description
+        [HttpPatch("items/{id}/description")]
+        public async Task<IActionResult> UpdateItemDescription(long id, [FromBody] UpdateItemDescription payload)
+        {
+            var todoItem = await _context.TodoItem.FindAsync(id);
+
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+
+            todoItem.Description = payload.Description;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

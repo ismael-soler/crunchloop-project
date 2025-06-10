@@ -9,6 +9,15 @@ public class TodoContext : DbContext
     public TodoContext(DbContextOptions<TodoContext> options)
         : base(options) { }
 
+    // Defines the one-to-many relationship and the cascade deletion of items
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<TodoList>()
+            .HasMany(list => list.Items)
+            .WithOne(item => item.TodoList!)
+            .HasForeignKey(item => item.TodoListId)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
 
     // "I want a table in my database that will store TodoLists"
     public DbSet<TodoList> TodoList { get; set; } = default!;
