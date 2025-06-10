@@ -92,7 +92,7 @@ To connect to the MCP server through Claude Desktop client, follow these steps:
     }
 }
 ```
-4. Save the file. Claude Desktop will now have access to the to-do list tools.
+4. Save the file and restart Claude Desktop, it will now have access to the to-do list tools.
 ---
 
 ### Available MCP Tools
