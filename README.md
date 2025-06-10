@@ -42,7 +42,7 @@ Before you begin, make sure you have the following installed on your system:
 
 Open you terminal and navigate to the root of this project.
 
-**2. Build, Run, and Monitor the Application**
+**2. Build and Run the Application**
 
 Execute the following command to build the Docker images and start all services in detached mode:
 
