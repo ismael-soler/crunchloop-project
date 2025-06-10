@@ -19,18 +19,20 @@ This project provides a complete environment for a to-do list application. It fe
 - **Relationship-Aware Deletion**: Deleting a to-do list automatically cascades to delete all its associated items.
 
 ---
-### Prerequisites
-Before you begin, make sure you have the following installed on your system:
-- [Docker](https://docs.docker.com/get-started/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
----
 
 ### Project Structure
 The project has two main services within the `src` directory:
 - `src/TodoApi/`: ASP.NET Core API. It handles all business logic, databases interactions, and exposes the HTTP endpoints.
 - `src/McpServer/`: The .NET console app that runs the MCP Server. It communicates with the API service to execute commands received from the client via standard input/output.
 
+---
+
+### Prerequisites
+Before you begin, make sure you have the following installed on your system:
+- [Docker](https://docs.docker.com/get-started/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+---
 
 ### How to Run the Project
 
