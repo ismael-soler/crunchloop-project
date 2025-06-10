@@ -1,14 +1,14 @@
 name: crunchloop
 
 services:
-  dev:
-    container_name: crunchloop-dev
-    image: mcr.microsoft.com/devcontainers/dotnet:8.0
-    command: sleep infinity
-    depends_on:
-      - sqlserver
-    volumes:
-      - .:/app
+  # dev:
+  #   container_name: crunchloop-dev
+  #   image: mcr.microsoft.com/devcontainers/dotnet:8.0
+  #   command: sleep infinity
+  #   depends_on:
+  #     - sqlserver
+  #   volumes:
+  #     - .:/app
 
   sqlserver:
     container_name: crunchloop-sqlserver
