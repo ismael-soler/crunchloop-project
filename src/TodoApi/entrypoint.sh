@@ -14,8 +14,8 @@ while ! nc -z $DB_HOST $DB_PORT; do
   sleep 1
 done
 
-echo "Database is up, applying migrations..."
-dotnet ef database update --project TodoApi.csproj
+# echo "Database is up, applying migrations..."
+# dotnet ef database update --project TodoApi.csproj
 
 # Execute the main command to start de API
 exec "$@"
